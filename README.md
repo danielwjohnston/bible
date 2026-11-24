@@ -37,3 +37,11 @@ bible/
 │       └── 04.md
 └── nt/                          # New Testament (Matthew–Revelation)
 ```
+
+## Long-Term Scripture Study Vision
+
+The translation and offline reader are the foundation of a comprehensive, extensible Scripture study platform. The long-term requirement includes the full preceding **82-category study taxonomy**, every listed method, and meaningful combinations of modalities, methods, frameworks, lenses, representations, objectives, participation, evaluation, and practical application.
+
+Start with the [product documentation](docs/README.md), including the [vision](docs/VISION.md), [taxonomy source and recovery status](docs/STUDY_TAXONOMY.md), [detailed requirements](docs/REQUIREMENTS.md), [prototype capability traceability](docs/PROTOTYPES.md), and [roadmap](docs/ROADMAP.md). These describe intended capabilities; they are not claims that the complete platform is implemented. The currently available taxonomy export stops during category 15, so full-source reconciliation remains open.
+
+The existing **CC BY-SA 4.0** corpus commitment remains in place. Public-domain inputs do not themselves create reciprocal obligations; the license applies to covered rights and adaptations under its actual terms. Source editions, annotations, original translation, study materials, software, and third-party assets need distinct provenance and rights records. See [corpus and licensing](docs/CORPUS_AND_LICENSING.md) and [unresolved decisions](docs/DECISIONS.md). The three personal HTML prototypes are documented by capability and have not been uploaded.

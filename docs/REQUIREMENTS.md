@@ -1,0 +1,74 @@
+# Durable product requirements
+
+## Status and traceability
+
+These requirements elaborate the user's comprehensive study goal; they are not claims of delivered functionality. Sources are the existing repository (R0), the preceding conversation's vision and taxonomy (V0, T01–T15 where recovered), and the inspected prototypes [P1–P3](PROTOTYPES.md). Requirements derived from prototypes generalize capabilities, not their personal or theological wording. All original taxonomy entries, including unrecovered categories, remain in scope under TAX-01.
+
+Each implementation issue should cite a requirement ID, taxonomy entry IDs once available, source evidence, acceptance criteria, milestone, dependency, and verification record. Requirements start **planned** unless explicitly described otherwise. Recovered taxonomy coverage is not implementation coverage.
+
+## Corpus foundation
+
+| ID | Requirement and acceptance criteria | Trace / milestone |
+| --- | --- | --- |
+| COR-01 | Maintain a fresh original-language translation corpus in canonical reading order, beginning with the existing chapters. Preserve Word-for-Word, Clear & Faithful, Everyday English, Crossings & Lexical Notes, and Supplemental Texts & Allusions. A release identifies available books/chapters and distinguishes missing text from intentionally absent verses. | R0; M1 |
+| COR-02 | Give editions, canon profiles, books, chapters, passages, verses, tokens, registers, and annotations stable identities. Round-trip an ID to a passage, register, corpus revision, language, and versification. Do not assume every edition has identical verse boundaries or that all canons contain 66 books. Existing 66-book prototype order is one profile, not a universal rule. | R0, P1, V0; M1 |
+| COR-03 | Align the three English registers to common source passages and, where available, source tokens. Show semantic alternatives, idioms, grammar, wordplay, and uncertainty without treating etymology or every possible lexical sense as the meaning in each context. Demonstrate a passage with explicit alignment limits and review history. | R0, P2, P3; M1–M3 |
+| COR-04 | Record source edition/version, acquisition URL, checksum, rights status, attribution, transformation steps, translator/editor/reviewer, and revision history. Export those records with a selected corpus slice; never infer the exact source edition from a generic README label. | R0, V0; M1 |
+| COR-05 | Preserve source quotations and inline allusions with their own passage links, edition, rights records, and the relation type: quotation, allusion, parallel, proposed echo, or editorial comparison. Display supplied context without obscuring the primary text. Missing context must be visible. | R0, P2, P3; M1–M3 |
+| COR-06 | Publish reproducible, versioned corpus packages with human-readable text and machine-readable exports, license notices, checksums, change logs, and known limitations. Rebuilding from the same inputs must preserve passage identities and distinguish content changes from formatting changes. Format choices remain D04. | R0, V0; M1–M2 |
+
+## Taxonomy and composition
+
+| ID | Requirement and acceptance criteria | Trace / milestone |
+| --- | --- | --- |
+| TAX-01 | Preserve and reconcile the full preceding 82-category taxonomy and every listed method. Record the original source and verify every category and entry against it. **Blocked:** only categories 1–14 and part of 15 are recovered. Acceptance cannot be inferred from an 82-row placeholder list or a newly generated replacement. | V0; M0 |
+| TAX-02 | Provide a searchable, browsable, versioned registry of categories and entries with definitions, synonyms, multiple memberships, independent dimension tags, prerequisites, related methods, and coverage states. Demonstrate adding an entry without renumbering old entries or breaking saved studies. | V0, T01–T15; M2 |
+| CMP-01 | Compose subjects, modalities, methods, frameworks, lenses, cognitive operations, representations, environments, participation, objectives, applications, evaluation, and integration independently. A saved recipe retains selected values, sequence, corpus revision, evidence, expected outputs, and alternatives after export/import. | V0, P2, P3; M2–M3 |
+| CMP-02 | Permit multiple values per dimension, guided templates, learner-selected alternatives, prerequisites, and incompatibility explanations. Bound search and generation rather than enumerate every combination. Demonstrate a text/audio comparison recipe and an argument-map/group-discussion recipe with accessible alternatives. | V0, T01–T15; M3 |
+| CMP-03 | Track each baseline entry from requirement to implementation and validation. A deferred entry retains an owner, reason, revisit condition, and milestone. Coverage reports identify their baseline and denominator; full coverage remains unknown until TAX-01 is satisfied. | V0; M0–M5 |
+
+## Reading, investigation, and representation
+
+| ID | Requirement and acceptance criteria | Trace / milestone |
+| --- | --- | --- |
+| READ-01 | Support book/chapter navigation, previous/next navigation across book boundaries, reference parsing, verse focus, and durable deep links. Invalid or ambiguous references receive an explanation without silently selecting an unrelated passage. | R0, P1; T03; M2 |
+| READ-02 | Support full-text and scoped search, all/OT/NT or canon-defined filters, query highlighting, result counts, bounded pages, and return to context. Disclose result limits and truncated results. Language-aware and lemma search may arrive later without changing passage IDs. | P1; T03, T08–T10; M2–M4 |
+| READ-03 | Preserve self-contained offline reading and study packages. Essential text, navigation, and included notes work without network access or a remote account. Disclose package contents and unavailable online enhancements. Export must not silently fetch restricted assets. | R0, P1–P3; M2 |
+| READ-04 | Compare registers or permitted editions, label every rendering, and retain selection where appropriate. Copy/export includes the passage reference, edition/register, attribution, and change notices required for the material. A study-authored literal rendering must not masquerade as a named published translation. | R0, P1, P2; T03; M2–M3 |
+| INV-01 | Support close reading, observation, questions, annotation, lexical/morphological/syntactic analysis, literary structure, context, and cross-passage investigation. Notes distinguish what the source says from explanatory claims and applications. Each claim can cite passage spans and external evidence with uncertainty. | P2, P3; T03–T04, T08–T12; M3 |
+| INV-02 | Support historical, cultural, canonical, doctrinal, Christological, ethical, and reception-history lenses as explicitly named perspectives. Allow comparing interpretations, cautions, counterarguments, evidence quality, and unresolved disagreement. Adding a lens does not overwrite the underlying translation or imply all perspectives agree. | V0, P2, P3; T10–T12; M3–M4 |
+| REP-01 | Render study content as prose, tables, outlines, diagrams, argument/concept maps, knowledge graphs, timelines, geographic maps, and other extendable representations. Every view links back to its passages and claims and offers a textual equivalent. Distinguish uncertain dates/locations from established data. | V0, P2; T01, T04, T10–T13; M3–M4 |
+| REP-02 | Support listening, pronunciation, oral recitation, discussion, narration, and mixed text/audio workflows; future media include images, animation, video, models, simulations, and spatial experiences. Show source/rights for recordings, provide text alternatives, and expose playback/stop controls. Offline voice availability is disclosed rather than promised by a browser API. | V0, P2; T01–T02, T05–T07; M3–M5 |
+| KNOW-01 | Model typed relationships among passages, tokens, concepts, people, places, events, doctrines, arguments, sources, and studies. Relations have evidence, authorship, revision, perspective, and uncertainty. A graph must distinguish an author's assertion from an independently reviewed relationship. | V0, P2, P3; T01, T10–T13; M4 |
+
+## Authoring, learning, and practice
+
+| ID | Requirement and acceptance criteria | Trace / milestone |
+| --- | --- | --- |
+| AUTH-01 | Author reusable passage-based, theme-based, and statement-based studies with ordered sections, lexical notes, exposition, context, cautions, evidence, discussion, prayer, memory, journaling, and practical activities as applicable. Separate study content from reusable presentation and behavior. A template can produce two different studies without copying application logic. | P2, P3; T04, T13; M3 |
+| AUTH-02 | Support guided/progressive disclosure and full-text views, section deep links, linked word lists/glossaries, and source-linked study drawers or equivalent accessible detail views. Closing a dialog restores focus, and essential content is available without relying on animation. | P2, P3; T01, T03; M3 |
+| LEARN-01 | Provide active recall, progressive word hiding, cloze, recitation, typed recall, flashcards, question/answer, matching, cumulative review, and spaced/distributed practice as appropriate. Identify what is being assessed, provide feedback and retry, and retain the selected corpus revision. Scheduling is a future capability; it is not demonstrated by the current memory prototype. | P2; T02, T04, T14–T15; M3–M4 |
+| LEARN-02 | Support explanation, paraphrase, reconstruction, argument evaluation, evidence review, peer discussion, and creative synthesis as assessment alternatives. Recall scores do not establish interpretive correctness, spiritual maturity, or moral worth. Expose uncertainty and disagreement rather than forcing every question into a single scored answer. | V0, P2; T06, T09–T13; M3–M5 |
+| FORM-01 | Offer voluntary reflection, prayer, journaling, action plans, habit/practice prompts, embodied activities, teaching, service, and group discussion. A learner can choose a private response, skip a personal prompt, or clear their data. Never require disclosure of confession or personal circumstances to complete a study. | V0, P2, P3; T04–T07; M3–M5 |
+| GROUP-01 | Support individual, paired, family, facilitated group, and collaborative study workflows through reusable prompts and materials, followed by optional shared authoring and discussion. Sharing has an explicit audience, permissions, export boundaries, and moderation decisions before hosted collaboration ships. Private notes are excluded by default. | V0, P2; T06; M3–M5 |
+
+## Access, rights, privacy, and extensibility
+
+| ID | Requirement and acceptance criteria | Trace / milestone |
+| --- | --- | --- |
+| ACC-01 | Provide keyboard access, visible focus, semantic controls, screen-reader labels, sensible headings, readable layout, text resizing, sufficient contrast, reduced-motion behavior, and non-color cues. Test complete tasks with keyboard and a screen reader against a chosen documented accessibility target. Static markup alone is not conformance evidence. | V0, P1–P3; M2 onward |
+| ACC-02 | Offer equivalent pathways across text, audio, visual, and physical activities; support plain-language scaffolding and different levels of experience. Preferences are user-controlled rather than diagnostic labels or fixed learning-style classifications. Complex visualizations retain navigable source text. | V0, T01–T07; M3–M5 |
+| PRIV-01 | Keep private journals, reflections, responses, and progress separate from public studies and corpus content. State storage location and limitations, provide individual/all-data clearing and deliberate export, and verify persistence/clear behavior. Browser-local storage is not a backup or an encryption guarantee. Hosted sync requires D07 before release. | P2, V0; M3 |
+| RIGHTS-01 | Apply the [rights and provenance gates](CORPUS_AND_LICENSING.md) to each source, quotation, annotation, dataset, font, image, audio item, and code component. Export a component-level notice manifest. Unknown-rights material is excluded from public packages rather than covered by a blanket repository notice. | R0, P1–P3, V0; M1 onward |
+| RIGHTS-02 | Preserve the corpus's existing CC BY-SA 4.0 commitment and distinguish it from public-domain source status and application software licensing. No reader license can substitute for corpus rights. Document any future software-license decision separately without silently relicensing existing contributions. | R0, V0; M1 |
+| EXT-01 | Support independently versioned content schemas, importers, renderers, activity types, datasets, and extensions. Validate unknown/unsupported fields and preserve readable fallback content. A new method can be added without changing every study or the corpus identity model. | V0; M2–M5 |
+| EXT-02 | Treat imported study markup, scripts, media, and external links as untrusted. Import content through validated formats, separate executable extensions, and disclose network/storage permissions before use. Demonstrate safe handling of unsupported content and rights metadata. | Proposed architectural requirement derived from P1–P3 portability; M2–M5 |
+| OPS-01 | Track provenance, review status, reproducible builds, limitations, and release coverage in public documentation. Publishing a build must not imply all corpus text is translated, reviewed, or rights-cleared. Maintain existing offline build while adding new formats incrementally. | R0, V0; M1 onward |
+
+## Architecture direction, not a stack selection
+
+Separate five layers: (1) source editions and rights records; (2) versioned corpus and alignments; (3) evidence and knowledge relationships; (4) taxonomy, study definitions, activities, and private learner state; (5) renderers, export packages, and optional collaboration services. The existing Markdown chapters remain valid inputs during migration.
+
+A study definition needs at least: identity and schema version; title and author; license/provenance; corpus/edition revisions and passage references; category/entry references; chosen dimension values; objective and prerequisites; ordered content and activities; claims with evidence/perspective/uncertainty; representations and accessible alternatives; evaluation rules; export dependencies. Personal responses live in a separate learner-state record and are not embedded in a distributable template.
+
+The reader consumes a selected package, not an assumption that every possible source is bundled. A portable package includes permitted content, required notices, referenced schema versions, and readable fallbacks. Full source-critical machinery, hosted synchronization, AI assistance, and immersive media can be added later through explicit designs and rights review. AI-generated interpretations, if ever introduced, require clear labeling, source citations, review, and privacy decisions; they are not a prerequisite for this documentation or the core corpus.
