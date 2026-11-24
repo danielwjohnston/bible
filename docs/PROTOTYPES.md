@@ -59,7 +59,9 @@ Reusable outcome: a statement-to-evidence model and authoring template that dist
 | Contextual cautions and limits of interpretations | P2, P3 | INV-02, LEARN-02 | T11–T12 | M3 onward |
 | Inline fonts and quoted/embedded source text | P1–P3 | RIGHTS-01, COR-04, EXT-02 | Rights infrastructure, not taxonomy coverage | M1 onward |
 
-These mappings are many-to-many and provisional until TAX-01 restores the entire baseline. No row claims that a prototype implements a whole taxonomy category.
+These mappings are many-to-many. The complete supplied [taxonomy coverage register](TAXONOMY_COVERAGE.md) now provides category/entry planning links. Additional source-specific links are P1 → T25 (Scripture reading) and T77 (granularity); P2 → T26–T29 (frameworks, observation, languages, translation), T40–T42 (theological disciplines), T62–T68 (devotional/practical activities), and T81 (assessment); P3 → T28, T30–T32 (language/literary/rhetorical/argument analysis), T61 (identity/self-examination), T66 (application), and T79 (decomposition). No row claims that a prototype implements an entire category or validates every method.
+
+The newly supplied taxonomy HTML is a separate reference artifact, not a fourth personal Scripture-study prototype. Static inspection found search/filter, expand/collapse, print/PDF, a configurable combination calculator, and compose/randomize/copy/save prompt controls. Its 4,588 category-list entries and 82 generator choices agree with the supplied JSON/Markdown. These support CMP-04, TAX-02, and portable authoring requirements; the HTML file and scripts remain local. No attached JavaScript was executed.
 
 ## Rights and privacy disposition
 

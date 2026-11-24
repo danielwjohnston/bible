@@ -14,7 +14,7 @@ All 82 categories from the preceding study taxonomy, every method listed under t
 
 There is no finite enumeration of every possible study. New methods, media, contexts, and combinations will continue to emerge. Preserve the original 82-category baseline, then extend it with versioned identifiers and relationships. Do not promise that an arbitrary count such as 100,000 entries exhausts the space. Support discovery, authoring, and composition so the space can grow without redesigning the platform.
 
-The [taxonomy source record](STUDY_TAXONOMY.md) marks which original entries are actually recovered. Binding scope does not imply that missing source text has been verified.
+The [taxonomy source record](STUDY_TAXONOMY.md) preserves all 82 categories and 4,588 entries in the supplied reconstruction, plus diagrams, lifecycle, objective mappings, recommendations, calculator axes, and generator choices. The [coverage register](TAXONOMY_COVERAGE.md) maps each category and every entry by inheritance to requirements and milestones. All 743 available original-excerpt entries match exactly; fidelity to the remainder of the direct original transcript remains unverified.
 
 ## Product pillars
 
@@ -64,7 +64,7 @@ Examples of future recipes, offered as requirements illustrations rather than re
 - Open a personal declaration statement, inspect its cited passages and lexical evidence, compare interpretations and cautions, then revise the statement while preserving its supporting sources.
 - Study a journey with an accessible geographic map and textual itinerary, distinguish attested locations from uncertain reconstructions, and reconstruct the route from memory.
 
-New recipes should reuse capabilities demonstrated by the [three prototypes](PROTOTYPES.md), while making their content, tools, and presentation independently replaceable.
+New recipes should reuse capabilities demonstrated by the [three prototypes](PROTOTYPES.md), while making their content, tools, and presentation independently replaceable. The supplied taxonomy adds a six-axis generator with 82 selectable options and four depth choices, a configurable combination calculator, and a learning cycle from encounter through reflection. These are requirements evidence for composable authoring, not proof that every generated tuple is useful. Preserve the 24 objective-to-method pairings and 10 recommended approaches as discoverable starting points, with explicit provenance and room for alternatives.
 
 ## Boundaries and success
 
