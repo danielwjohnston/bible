@@ -173,16 +173,16 @@ HTML_TEMPLATE = """<!DOCTYPE html>
 </nav>
 <main>
   <div class="toolbar" id="register-bar">
-    <button data-reg="Ultra-Literal">Ultra-Literal</button>
-    <button data-reg="Balanced" class="active">Balanced</button>
-    <button data-reg="Modern Informal">Modern Informal</button>
+    <button data-reg="Word-for-Word">Word-for-Word</button>
+    <button data-reg="Clear &amp; Faithful" class="active">Clear &amp; Faithful</button>
+    <button data-reg="Everyday English">Everyday English</button>
   </div>
   <div id="content"></div>
 </main>
 <script>
 const CHAPTERS = __CHAPTERS_JSON__;
 let currentIdx = 0;
-let currentReg = 'Balanced';
+let currentReg = 'Clear & Faithful';
 
 function mdToHtml(md) {
   return md

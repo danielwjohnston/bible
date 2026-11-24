@@ -5,13 +5,14 @@ A fresh, original-language translation of the Bible into English, released under
 ## Core Design
 
 1. **Canonical Order:** Translated sequentially from Genesis through Revelation.
-2. **Self-Contained & Multi-Register:** Every passage is presented without needing external cross-references:
-   - **Ultra-Literal:** Word-for-word / formal equivalence preserving Hebrew, Aramaic, and Greek syntax and idioms.
-   - **Balanced:** Clear, faithful contemporary English.
-   - **Modern Informal:** Natural, everyday conversational English.
-   - **Crossings & Lexical Range:** Key terms with their full semantic range, alternative renderings, and root meanings.
+2. **Self-Contained & Multi-Register:** Every passage is presented without needing external cross-references, serving every reading and study modality:
+   - **Word-for-Word:** Preserves original Hebrew, Aramaic, and Greek syntax, particles, and idioms for deep lexical and grammatical study.
+   - **Clear & Faithful:** Bridges word-for-word accuracy with natural contemporary English for careful reading, teaching, and memorization.
+   - **Everyday English:** Natural, conversational English for accessible, devotional, and narrative-flow reading.
+   - **Crossings & Lexical Notes:** Full semantic range, root meanings, wordplays, and alternative renderings for key terms.
    - **Supplemental Texts & Allusions:** Quoted or alluded-to passages ("it is written", echoes, and parallel texts) included inline.
-3. **Copyleft (CC BY-SA 4.0):** Free to read, print, quote, remix, and build upon—even commercially—provided all derivative works remain under **CC BY-SA 4.0**.
+3. **Offline-First Reader:** Compiled into a single-file, zero-dependency HTML reader (`dist/open-copyleft-bible.html`).
+4. **Copyleft (CC BY-SA 4.0):** Free to read, print, quote, remix, and build upon—even commercially—provided all derivative works remain under **CC BY-SA 4.0**.
 
 ## Source Texts
 
@@ -22,19 +23,17 @@ A fresh, original-language translation of the Bible into English, released under
 
 ```text
 bible/
-├── LICENSE            # CC BY-SA 4.0
-├── README.md          # Project overview
-├── CONTRIBUTING.md    # Translation & formatting guidelines
-├── ot/                # Old Testament (Genesis–Malachi)
+├── LICENSE                      # CC BY-SA 4.0
+├── README.md                    # Project overview
+├── CONTRIBUTING.md              # Translation & formatting guidelines
+├── build_reader.py              # Single-file offline HTML reader builder
+├── dist/
+│   └── open-copyleft-bible.html # Offline Bauhaus reader
+├── ot/                          # Old Testament (Genesis–Malachi)
 │   └── genesis/
 │       ├── 01.md
-│       └── 02.md
-└── nt/                # New Testament (Matthew–Revelation)
+│       ├── 02.md
+│       ├── 03.md
+│       └── 04.md
+└── nt/                          # New Testament (Matthew–Revelation)
 ```
-
-## Status
-
-- [x] Repository & CC BY-SA 4.0 license initialized
-- [x] [Genesis 1](ot/genesis/01.md) (Multi-register + crossings + supplemental texts)
-- [x] [Genesis 2](ot/genesis/02.md) (Multi-register + crossings + supplemental texts)
-- [ ] Genesis 3–50 & remaining books in canonical order
