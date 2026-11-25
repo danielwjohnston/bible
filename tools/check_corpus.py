@@ -40,6 +40,7 @@ def main():
         require('Public Domain' in item['reference_section'], 'Reference rights label missing: '+path)
         require(item['checks']['independent_semantic_review'] == 'pending', 'Review-state transition requires evidence and a release check: '+path)
         lines += len(item['numbered_verse_labels'])
+    require(seen == {path for path, chapter in by_path.items() if chapter['status'] == 'translation-draft'}, 'Draft registry and corpus membership differ.')
     require(all(any(body.strip() for body in c['sections'].values()) for c in chapters), 'Empty content record.')
     print(json.dumps({'content_records':len(chapters),'book_entries':84,'checked_drafts':len(seen),'draft_source_verse_lines':lines,'reference_text_integrity':'passed','semantic_review':'pending'}))
 
