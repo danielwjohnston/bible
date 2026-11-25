@@ -173,11 +173,12 @@ def parse_chapter(md_path: Path, testament: str) -> dict:
         sec_body = re.sub(r"\n+---\s*$", "", parts[i + 1].strip()).strip()
         sections[sec_name] = sec_body
 
-    status = (
-        "original-cc-by-sa"
-        if all(sec in sections for sec in PHASE2_SECTIONS)
-        else "provisional-pd"
-    )
+    if re.search(r"\bTranslation status:\s*draft\b", provenance, re.IGNORECASE):
+        status = "translation-draft"
+    elif all(sec in sections for sec in PHASE2_SECTIONS):
+        status = "original-cc-by-sa"
+    else:
+        status = "provisional-pd"
     chapter_label = "Prologue" if md_path.stem == "00" else (md_path.stem.lstrip("0") or "0")
 
     return {
@@ -439,6 +440,11 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     border-color: var(--pd);
     background: rgba(124, 196, 255, 0.08);
   }
+  .status-badge.draft, .book-meta.draft {
+    color: var(--warn);
+    border-color: var(--warn);
+  }
+  .chapter-grid button.draft { border-color: #8c7425; }
   .provenance-line {
     font-size: 0.86rem;
     color: var(--ink-dim);
@@ -540,6 +546,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
       <button data-reg="Word-for-Word">Word-for-Word</button>
       <button data-reg="Clear &amp; Faithful" class="active">Clear &amp; Faithful</button>
       <button data-reg="Everyday English">Everyday English</button>
+      <button data-reg="Reference Text (WEB Updated, Public Domain)" data-reference="true" hidden>WEB Reference (PD)</button>
     </div>
     <div class="pager-buttons">
       <button id="prev-btn" type="button">&larr; Prev</button>
@@ -555,6 +562,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
 </main>
 <script>
 const CHAPTERS = __CHAPTERS_JSON__;
+const REFERENCE_SECTION = 'Reference Text (WEB Updated, Public Domain)';
 const TESTAMENT_NAMES = {
   ot: 'Old Testament',
   nt: 'New Testament',
@@ -565,10 +573,12 @@ const BOOKS = [];
 const BOOK_MAP = Object.create(null);
 const HASH_MAP = Object.create(null);
 let origCount = 0;
+let draftCount = 0;
 let pdCount = 0;
 
 CHAPTERS.forEach((ch, idx) => {
   if (ch.status === 'original-cc-by-sa') origCount += 1;
+  else if (ch.status === 'translation-draft') draftCount += 1;
   else pdCount += 1;
 
   const bookKey = ch.testament + ':' + ch.book_slug;
@@ -581,6 +591,7 @@ CHAPTERS.forEach((ch, idx) => {
       name: ch.book,
       chapters: [],
       origCount: 0,
+      draftCount: 0,
       pdCount: 0
     };
     BOOK_MAP[bookKey] = b;
@@ -588,6 +599,7 @@ CHAPTERS.forEach((ch, idx) => {
   }
   b.chapters.push({ idx: idx, ch: ch });
   if (ch.status === 'original-cc-by-sa') b.origCount += 1;
+  else if (ch.status === 'translation-draft') b.draftCount += 1;
   else b.pdCount += 1;
 
   const exactHash = '#' + ch.book_slug + '-' + ch.stem;
@@ -661,13 +673,14 @@ function mdToHtml(md) {
 
 function renderCorpusNotices() {
   document.getElementById('corpus-license').textContent =
-    'OFFLINE READER · ' + CHAPTERS.length + ' CHS | Original CC BY-SA 4.0: ' +
-    origCount + ' · Provisional PD Base: ' + pdCount;
+    'OFFLINE READER · ' + CHAPTERS.length + ' RECORDS | Existing multi-register: ' +
+    origCount + ' · Translation drafts: ' + draftCount + ' · Provisional PD Base: ' + pdCount;
 
   document.getElementById('site-footer').textContent =
-    'Mixed-License Corpus Notice: Original multi-register translations (' + origCount +
-    ' chapters) are licensed under CC BY-SA 4.0. Provisional Phase 1 base-layer chapters (' +
-    pdCount + ' chapters) preserve unmodified Public Domain text from the World English Bible Updated (engwebu, eBible.org) pending Phase 2 original-language translation.';
+    'Corpus status: ' + origCount + ' existing multi-register records under project CC BY-SA 4.0 terms; ' +
+    draftCount + ' AI-assisted translation drafts pending editorial review; ' + pdCount +
+    ' provisional Public Domain base records. WEB reference sections retain their Public Domain status. ' +
+    'Draft publication does not establish completed linguistic review or copyright in raw AI output.';
 }
 
 function renderTestamentTabs(activeTestament) {
@@ -699,7 +712,10 @@ function renderBookNav(activeBook) {
   bookList.innerHTML = tBooks.map(b => {
     let badgeText = 'PD';
     let badgeClass = 'pd';
-    if (b.origCount === b.chapters.length) {
+    if (b.draftCount > 0) {
+      badgeText = b.draftCount + '/' + b.chapters.length + ' Draft';
+      badgeClass = 'draft';
+    } else if (b.origCount === b.chapters.length) {
       badgeText = 'CC BY-SA';
       badgeClass = 'cc';
     } else if (b.origCount > 0) {
@@ -729,9 +745,10 @@ function renderChapterNav(activeBook, ch) {
 
   const grid = document.getElementById('chapter-grid');
   grid.innerHTML = activeBook.chapters.map(entry => {
+    const isDraft = entry.ch.status === 'translation-draft';
     const isOrig = entry.ch.status === 'original-cc-by-sa';
     const cls = [
-      isOrig ? 'orig' : '',
+      isDraft ? 'draft' : (isOrig ? 'orig' : ''),
       entry.idx === currentIdx ? 'active' : ''
     ].filter(Boolean).join(' ');
     const label = entry.ch.chapter === 'Prologue' ? 'Pro' : entry.ch.chapter;
@@ -773,8 +790,13 @@ function render() {
     });
   }
 
-  const isOrig = ch.status === 'original-cc-by-sa';
+  const isDraft = ch.status === 'translation-draft';
+  const isOrig = ch.status === 'original-cc-by-sa' || isDraft;
+  const hasReference = isDraft && Boolean(ch.sections[REFERENCE_SECTION]);
+  if (isOrig && !ch.sections[currentReg]) currentReg = 'Clear & Faithful';
+  const isReference = hasReference && currentReg === REFERENCE_SECTION;
   document.querySelectorAll('#register-bar button').forEach(btn => {
+    btn.hidden = btn.dataset.reference === 'true' && !hasReference;
     btn.disabled = !isOrig;
     btn.classList.toggle('active', isOrig && btn.dataset.reg === currentReg);
     btn.onclick = () => {
@@ -797,11 +819,17 @@ function render() {
     b.onclick = () => { if (currentIdx < CHAPTERS.length - 1) selectChapter(currentIdx + 1, true); };
   });
 
-  const badgeHtml = isOrig
-    ? '<div class="status-badge cc">Original · CC BY-SA 4.0</div>'
-    : '<div class="status-badge pd">Provisional Base Layer · Public Domain</div>';
+  const badgeHtml = isReference
+    ? '<div class="status-badge pd">Reference Text · Public Domain</div>'
+    : isDraft
+      ? '<div class="status-badge draft">Translation Draft · Review Pending</div>'
+      : isOrig
+        ? '<div class="status-badge cc">Existing Multi-Register · CC BY-SA 4.0</div>'
+        : '<div class="status-badge pd">Provisional Base Layer · Public Domain</div>';
 
-  const provHtml = ch.provenance
+  const provHtml = isReference
+    ? '<p class="provenance-line">World English Bible Updated (engwebu, eBible.org), Public Domain. Preserved reference text from the published base layer.</p>'
+    : ch.provenance
     ? `<p class="provenance-line">${escapeHtml(ch.provenance)}</p>`
     : '';
 
@@ -815,11 +843,16 @@ function render() {
     body = ch.sections[currentReg] || '';
     const crossings = ch.sections['Crossings & Lexical Notes'] || '';
     const supp = ch.sections['Supplemental Texts & Allusions'] || '';
-    if (crossings || supp) {
+    if (!isReference && (crossings || supp)) {
       notesHtml = `<div class="notes">
         ${crossings ? `<h3>Crossings &amp; Lexical Notes</h3>${mdToHtml(crossings)}` : ''}
         ${supp ? `<h3>Supplemental Texts &amp; Allusions</h3>${mdToHtml(supp)}` : ''}
       </div>`;
+    }
+    if (isDraft) {
+      noticeHtml = isReference
+        ? '<div class="provisional-notice">This is the preserved Public Domain reference, shown separately from the AI-assisted translation draft.</div>'
+        : '<div class="provisional-notice">AI-assisted translation draft. Independent linguistic, scholarly-note, and human editorial reviews are pending. Use WEB Reference (PD) to compare with the existing base text.</div>';
     }
   } else {
     const secKeys = Object.keys(ch.sections);
@@ -887,8 +920,9 @@ def main() -> None:
     out_path = DIST / "open-copyleft-bible.html"
     out_path.write_text(out, encoding="utf-8")
     orig = sum(1 for c in chapters if c["status"] == "original-cc-by-sa")
-    pd = len(chapters) - orig
-    print(f"Built {out_path} ({len(chapters)} chapters: {orig} original-cc-by-sa, {pd} provisional-pd)")
+    drafts = sum(1 for c in chapters if c["status"] == "translation-draft")
+    pd = sum(1 for c in chapters if c["status"] == "provisional-pd")
+    print(f"Built {out_path} ({len(chapters)} records: {orig} existing multi-register, {drafts} drafts, {pd} provisional-pd)")
 
 
 if __name__ == "__main__":

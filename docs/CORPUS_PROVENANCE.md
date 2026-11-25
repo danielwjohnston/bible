@@ -2,6 +2,14 @@
 
 This document records the verified provenance, edition metadata, cryptographic checksums, licensing boundaries, textual/versification notes, and review status for the Open Copyleft Bible corpus. It complements [`docs/CORPUS_AND_LICENSING.md`](CORPUS_AND_LICENSING.md), [`docs/PROTOTYPES.md`](PROTOTYPES.md), and [`docs/DECISIONS.md`](DECISIONS.md).
 
+## Current Draft Backfill (2026-11-25)
+
+The published base and its source-accounting matrix below remain the reference baseline. The current reader additionally exposes 150 AI-assisted translation drafts from Exodus, Job, Matthew, Mark, and Luke. These use 5,173 numbered lines from the selected WLC/OSHB (English-mapped) and SBLGNT references. All three draft registers have matching source verse identifiers. Ten SBLGNT omissions relative to the WEB base are recorded in the [pinned batch registry](translation/backfill.json); they are edition differences, not silently invented readings.
+
+Current primary-view records: six existing multi-register chapters, 150 explicitly labeled translation drafts, and 1,236 provisional public-domain records, still totaling 1,392 records across 84 entries. The 150 replaced primary views retain their complete former WEB text as a separate public-domain comparison section. Comparing alternate editions does not increase the content-record denominator.
+
+Independent linguistic review, verification of scholarly/manuscript assertions, and human editorial authorship review for these drafts remain pending. Existing project CC BY-SA terms do not establish copyright in raw AI-generated output. See [translation and review status](translation/README.md). Sections 4–7 retain the Phase 1 baseline counts and import verification history; they are not a claim that all current primary views are still public-domain-only records.
+
 ---
 
 ## 1. Purpose & Separation of Rights Layers

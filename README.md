@@ -2,6 +2,12 @@
 
 A fresh, original-language translation of the Bible into English, released under a **copyleft** license (**CC BY-SA 4.0**) in the spirit of [opensourcebible.org](https://www.opensourcebible.org/).
 
+## Current Corpus Status
+
+The reader contains the complete published base: **84 book entries and 1,392 content records** (1,391 chapters plus the Sirach prologue). It now distinguishes six existing multi-register chapters, **150 AI-assisted translation drafts**, and 1,236 provisional public-domain records. Draft publication is not certification of linguistic review or protectable human authorship.
+
+The recovered drafts cover Exodus, Job, Matthew, Mark, and Luke. Their previous WEB Updated text remains available through **WEB Reference (PD)**, alongside the three draft registers. See the [translation/review workflow](docs/translation/README.md), [pinned batch registry](docs/translation/backfill.json), and [corpus provenance](docs/CORPUS_PROVENANCE.md). The full study taxonomy remains the long-term vision while original-language drafting and editorial review continue.
+
 ## Core Design
 
 1. **Canonical Order:** Translated sequentially from Genesis through Revelation.
