@@ -2,6 +2,10 @@
 
 A fresh, original-language translation of the Bible into English, released under a **copyleft** license (**CC BY-SA 4.0**) in the spirit of [opensourcebible.org](https://www.opensourcebible.org/).
 
+**[Read the Bible online](https://danielwjohnston.github.io/bible/)**
+
+GitHub Pages publishes the self-contained reader from `main`. Every push runs the corpus checks, draft-status tests, and reader build before deployment; the same workflow can be rerun manually from [Actions](https://github.com/danielwjohnston/bible/actions/workflows/pages.yml). The published artifact contains only the built reader as `index.html`. No publishing branch is used. To read offline, save the page or use `dist/open-copyleft-bible.html` from this repository.
+
 ## Current Corpus Status
 
 The reader contains the complete published base: **84 book entries and 1,392 content records** (1,391 chapters plus the Sirach prologue). It now distinguishes six existing multi-register chapters, **152 AI-assisted translation drafts**, and 1,234 provisional public-domain records. Draft publication is not certification of linguistic review or protectable human authorship.
